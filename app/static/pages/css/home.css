@@ -1,3 +1,72 @@
-body{
-    background-color: black;
+html, body {
+    background-color: rgb(0, 0, 0);
+    color: white;
+    height: 100%;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    gap: 15px;
+}
+
+.square1 {
+    background-color: rgb(31, 14, 14);
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    height: 90%;
+    width: 80%;
+
+    display: grid;
+    grid-template-columns: repeat(9,170px);
+    grid-template-rows: repeat(6, 170px);
+    column-gap: 45px;
+    row-gap: 160px;
+  
+    box-sizing: border-box;
+    padding: 40px;
+
+    overflow-x: auto;
+    overflow-y: auto;
+    scroll-behavior: smooth;
+}
+
+.artistsquare {
+    box-sizing: border-box;
+    background-color: rgb(255, 0, 0);
+     box-sizing: border-box;
+}
+
+.square2{
+    background-color: rgb(31, 14, 14);
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    height: 90%;
+    width: 19%;
+}
+
+.bar{
+    background-color: rgb(255, 0, 0);
+    height: 10%;
+    width: 100%;
+}
+
+.login{
+    background-color: white;
+    width: 6%;
+    height: 6%;
+    position: fixed;
+    right: 1%;
+    top: 1%;
+    border-radius: 30px;
+
+    font-weight: bold;
+    font-size: 20px;
+}
+
+button:hover{
+    transform: scale(1.05);
 }

@@ -33,5 +33,5 @@ func HomeHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func StaticHandler(w http.ResponseWriter, r *http.Request) {
-	http.ServeFile(w, r, "/static/pages/css/home.css")
+	http.ServeFile(w, r, "static/pages/css/home.css")
 }
