@@ -12,16 +12,16 @@ html, body {
 }
 
 .square1 {
-    background-color: rgb(31, 14, 14);
+    background: linear-gradient(to top, #000000, #646464);
     position: fixed;
     right: 0;
     bottom: 0;
-    height: 90%;
-    width: 80%;
+    height: 93%;
+    width: 82%;
 
     display: grid;
-    grid-template-columns: repeat(9,170px);
-    grid-template-rows: repeat(6, 170px);
+    grid-template-columns: repeat(9,175px);
+    grid-template-rows: repeat(6, 175px);
     column-gap: 45px;
     row-gap: 160px;
   
@@ -31,6 +31,7 @@ html, body {
     overflow-x: auto;
     overflow-y: auto;
     scroll-behavior: smooth;
+
 }
 
 .artistsquare {
@@ -40,33 +41,28 @@ html, body {
 }
 
 .square2{
-    background-color: rgb(31, 14, 14);
+    background-color: #181818;
     position: fixed;
     left: 0;
     bottom: 0;
-    height: 90%;
-    width: 19%;
-}
-
-.bar{
-    background-color: rgb(255, 0, 0);
-    height: 10%;
-    width: 100%;
+    height: 93%;
+    width: 17%;
 }
 
 .login{
     background-color: white;
-    width: 6%;
-    height: 6%;
+    width: 110px;
+    height: 50px;
     position: fixed;
-    right: 1%;
+    right: 0.5%;
     top: 1%;
     border-radius: 30px;
 
     font-weight: bold;
-    font-size: 20px;
+    font-size: 17px;
 }
 
 button:hover{
     transform: scale(1.05);
+    background-color: rgb(233, 233, 233);
 }
