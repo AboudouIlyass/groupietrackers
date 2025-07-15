@@ -27,7 +27,7 @@ html, body {
   
     box-sizing: border-box;
     padding: 40px;
-
+    
     overflow-x: auto;
     overflow-y: auto;
     scroll-behavior: smooth;
@@ -35,9 +35,12 @@ html, body {
 }
 
 .artistsquare {
-    box-sizing: border-box;
-    background-color: rgb(255, 0, 0);
-     box-sizing: border-box;
+    background: white;
+    border-radius: 20px; /* 🎯 Rounded corners */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    padding: 10px;
+    text-align: center;
 }
 
 .square2{
