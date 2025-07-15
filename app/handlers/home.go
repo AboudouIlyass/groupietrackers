@@ -5,6 +5,7 @@ import (
 	"net/http"
 	"text/template"
 
+	"groupietrackers/fetchdata"
 	"groupietrackers/utils"
 )
 
@@ -24,7 +25,11 @@ func HomeHandler(w http.ResponseWriter, r *http.Request) {
 		utils.RenderError(w, http.StatusInternalServerError, "Internal Server Error")
 		return
 	}
-	err := tmp.Execute(w, nil)
+	FetchedData, errr := fetchdata.Fetch("https://fakestoreapi.com/products/")
+	if errr != nil {
+		utils.RenderError(w, http.StatusInternalServerError, "Internal Server Error")
+	}
+	err := tmp.Execute(w, FetchedData)
 	if err != nil {
 		log.Println("error during execution")
 		utils.RenderError(w, http.StatusInternalServerError, "internal server error")
