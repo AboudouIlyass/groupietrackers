@@ -19,7 +19,7 @@ func HomeHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	tmp, er := template.ParseFiles("static/pages/home.html")
+	tmp, er := template.ParseFiles("static/html/home.html")
 	if er != nil {
 		log.Println("Error parsing home.html file", er)
 		utils.RenderError(w, http.StatusInternalServerError, "Internal Server Error")
@@ -38,5 +38,9 @@ func HomeHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func StaticHandler(w http.ResponseWriter, r *http.Request) {
-	http.ServeFile(w, r, "static/pages/css/home.css")
+	http.ServeFile(w, r, "static/css/home.css")
+}
+
+func PicturesHandler(w http.ResponseWriter, r *http.Request){
+	http.ServeFile(w, r, "static/pics/gt.png")
 }
