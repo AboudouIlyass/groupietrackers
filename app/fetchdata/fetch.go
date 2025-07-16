@@ -9,7 +9,7 @@ import (
 	"groupietrackers/config"
 )
 
-func Fetch(dataLink string) ([]config.Data, error) {
+func Fetch(dataLink string) ([]config.ArtistInfo, error) {
 	response, err := http.Get(dataLink)
 	if err != nil {
 		log.Fatal(err)
@@ -22,7 +22,7 @@ func Fetch(dataLink string) ([]config.Data, error) {
 		log.Fatal(er)
 		return nil, er
 	}
-	var products []config.Data
+	var products []config.ArtistInfo
 	json.Unmarshal([]byte(body), &products)
 	return products, nil
 }

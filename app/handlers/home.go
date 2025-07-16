@@ -25,7 +25,7 @@ func HomeHandler(w http.ResponseWriter, r *http.Request) {
 		utils.RenderError(w, http.StatusInternalServerError, "Internal Server Error")
 		return
 	}
-	FetchedData, errr := fetchdata.Fetch("https://fakestoreapi.com/products/")
+	FetchedData, errr := fetchdata.Fetch("https://groupietrackers.herokuapp.com/api/artists")
 	if errr != nil {
 		utils.RenderError(w, http.StatusInternalServerError, "Internal Server Error")
 	}
