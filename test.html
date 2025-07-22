@@ -1,67 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Dialog Example</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #121212;
-      color: white;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      margin: 0;
-    }
-
-    button {
-      padding: 10px 20px;
-      background-color: #4CAF50;
-      border: none;
-      color: white;
-      font-size: 16px;
-      cursor: pointer;
-      border-radius: 6px;
-      transition: background-color 0.3s;
-    }
-
-    button:hover {
-      background-color: #45a049;
-    }
-
-    dialog {
-      border: none;
-      border-radius: 10px;
-      padding: 20px;
-      box-shadow: 0 0 20px rgba(0,0,0,0.6);
-      background-color: #1e1e1e;
-      color: white;
-    }
-
-    dialog::backdrop {
-      background: rgba(0, 0, 0, 0.7);
-    }
-
-    .close-btn {
-      margin-top: 20px;
-      background-color: #ff4444;
-    }
-
-    .close-btn:hover {
-      background-color: #cc0000;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css.css">
 </head>
 <body>
-
-  <button onclick="document.getElementById('infoDialog').showModal()">Open Dialog</button>
-
-  <dialog id="infoDialog">
-    <p>This is a dialog box!</p>
-    <button class="close-btn" onclick="document.getElementById('infoDialog').close()">Close</button>
-  </dialog>
-
+    
+    <dialog >
+        <h2>title</h2>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum praesentium aperiam nostrum necessitatibus autem molestias laborum quas vero? Praesentium debitis labore saepe? Laboriosam quasi, fugiat odio possimus sunt corrupti porro.</p>
+        <div class="cntrls">
+            <button class="closeBtn">close</button>
+            <button>ok</button>
+        </div>
+    </dialog>
+    
+    <main>
+        <button  id="click-here">click here</button>
+        
+    </main>
+    
+    
 </body>
+<script src="js.js"></script>
 </html>
