@@ -29,9 +29,10 @@ func (router Router) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	case "/static/css/home.css":
 		handlers.StaticHandler(w, r)
 	case "/static/pics/gt.png":
-		handlers.PicturesHandler(w,r)
+		handlers.PicturesHandler(w, r)
+	case "/static/js/popup.js":
+		handlers.JsHandler(w, r)
 	default:
 		http.NotFound(w, r)
 	}
 }
-

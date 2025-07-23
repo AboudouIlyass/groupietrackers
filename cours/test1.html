@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>test</title>
+    <style>
+        ::backdrop {
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+    </style>
+</head>
+
+<body>
+    <button onclick=showclickhere(true)>click here</button>
+
+    <dialog id="login-dialog">
+        <div class="wrapper">
+            <form >
+                <h2>loggin</h2>
+                <input type="text" placeholder="Username" required>
+                <input type="password" placeholder="Password" required>
+                <button>login</button>
+                <button onclick=showclickhere(false) type="button">Close</button>
+
+            </form>
+        </div>
+    </dialog>
+</body>
+
+<script>
+    const dialog = document.getElementById("login-dialog")
+    const wrapper = document.querySelector(".wrapper");
+
+    const showclickhere = (show) => show ? dialog.showModal() : dialog.close();
+
+    dialog.addEventListener("click", (e) => {
+        if (!wrapper.contains(e.target)) {
+            dialog.close();
+        }
+    })
+    // if !wrapper.contains(e.target) then close the dialog (&& here mean "then")
+    dialog.addEventListener("click", (e) => !wrapper.contains(e.target) && dialog.close());
+</script>
+
+</html>

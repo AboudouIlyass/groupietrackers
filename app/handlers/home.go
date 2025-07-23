@@ -44,3 +44,7 @@ func StaticHandler(w http.ResponseWriter, r *http.Request) {
 func PicturesHandler(w http.ResponseWriter, r *http.Request){
 	http.ServeFile(w, r, "static/pics/gt.png")
 }
+
+func JsHandler(w http.ResponseWriter, r *http.Request)  {
+	http.ServeFile(w, r, "static/js/popup.js")
+}
