@@ -5,15 +5,15 @@ import (
 	"text/template"
 )
 
-func home(w http.ResponseWriter, r *http.Request) {
+func Home(w http.ResponseWriter, r *http.Request) {
 	if r.URL.Path != "/" {
 		return
 	}
 	if r.Method != http.MethodGet {
 		return
 	}
-	fetcheddata, errF := Fetch("https://groupietrackers.herokuapp.com/api/artists")
-	if errF != nil {
+	fetcheddata, err := Fetch()
+	if err != nil {
 		return
 	}
 
@@ -21,5 +21,6 @@ func home(w http.ResponseWriter, r *http.Request) {
 	if errP != nil {
 		return
 	}
+
 	tmp.Execute(w, fetcheddata)
 }
