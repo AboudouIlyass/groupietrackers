@@ -2,9 +2,10 @@ package main
 
 import (
 	"encoding/json"
-	"fmt"
 	"io"
+	"log"
 	"net/http"
+	"text/template"
 )
 
 type Artist struct {
@@ -25,8 +26,19 @@ type IndexItem struct {
 	DatesLocations map[string][]string `json:"datesLocations"`
 }
 
+// the full struct info
+type ArtistsFullInfo struct {
+	Artists       Artist
+	LocationDates []LocationDates
+}
+
+type LocationDates struct {
+	Location string
+	Dates    []string
+}
+
 func main() {
-	// get the data
+	// fetch relations
 	respRel, errR := http.Get("https://groupietrackers.herokuapp.com/api/relation")
 	if errR != nil {
 		return
@@ -39,6 +51,7 @@ func main() {
 		return
 	}
 
+	// fetch artists
 	respA, errA := http.Get("https://groupietrackers.herokuapp.com/api/artists")
 	if errA != nil {
 		return
@@ -47,14 +60,72 @@ func main() {
 
 	dataA, _ := io.ReadAll(respA.Body)
 
-	var Artists Artist
+	var Artists []Artist
 	if err := json.Unmarshal(dataA, &Artists); err != nil {
 		return
 	}
 
-	for i, v := range Artists.ID {
-		if i == 1 {
-			fmt.Println(v)
+	// build a slice combined the artists & relations
+	
+
+	/*
+		 Build map from artist ID to IndexItem (relations)
+			    relMap := make(map[int]IndexItem)
+			    for _, rel := range relations.Index {
+			        relMap[rel.ID] = rel
+			    }
+
+			 // Build combined slice
+			    var fullInfos []ArtistsFullInfo
+			    for _, artist := range artists {
+			        var locationDates []LocationDates
+			        if rel, ok := relMap[artist.ID]; ok {
+			            for loc, dates := range rel.DatesLocations {
+			                locationDates = append(locationDates, LocationDates{
+			                    Location: loc,
+			                    Dates:    dates,
+			                })
+			            }
+			        }
+
+			        fullInfos = append(fullInfos, ArtistsFullInfo{
+			            Artists:       artist,
+			            LocationDates: locationDates,
+			        })
+			    }
+
+	*/
+
+	// parse function
+	parsehtmlfile := func(path string) (*template.Template, error) {
+		tmpl, err := template.ParseFiles(path)
+		if err != nil {
+			return nil, err
 		}
+		return tmpl, nil
 	}
+
+	// hanlde the root
+	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		tmp, err := parsehtmlfile("h.html")
+		if err != nil {
+			http.Error(w, "Internal Server Error: failed to load template", http.StatusInternalServerError)
+			return
+		}
+
+		switch r.Method {
+		case http.MethodGet:
+			if err := tmp.Execute(w, Artists); err != nil {
+				http.Error(w, "Internal Server Error: failed to render template", http.StatusInternalServerError)
+				return
+			}
+
+		default:
+			w.WriteHeader(http.StatusMethodNotAllowed)
+			w.Write([]byte("Method not allowed"))
+		}
+	})
+
+	log.Println("Server running at http://localhost:8080")
+	http.ListenAndServe(":8080", nil)
 }
