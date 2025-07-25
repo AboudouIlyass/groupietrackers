@@ -25,11 +25,13 @@ func HomeHandler(w http.ResponseWriter, r *http.Request) {
 		utils.RenderError(w, http.StatusInternalServerError, "Internal Server Error")
 		return
 	}
-	FetchedData, errr := fetchdata.Fetch("https://groupietrackers.herokuapp.com/api/artists")
-	if errr != nil {
+	fetcheddata, err := fetchdata.Fetch()
+	if err != nil{
 		utils.RenderError(w, http.StatusInternalServerError, "Internal Server Error")
 	}
-	err := tmp.Execute(w, FetchedData)
+
+	// execute
+	err = tmp.Execute(w, fetcheddata)
 	if err != nil {
 		log.Println("error during execution")
 		utils.RenderError(w, http.StatusInternalServerError, "internal server error")
@@ -41,10 +43,10 @@ func StaticHandler(w http.ResponseWriter, r *http.Request) {
 	http.ServeFile(w, r, "static/css/home.css")
 }
 
-func PicturesHandler(w http.ResponseWriter, r *http.Request){
+func PicturesHandler(w http.ResponseWriter, r *http.Request) {
 	http.ServeFile(w, r, "static/pics/gt.png")
 }
 
-func JsHandler(w http.ResponseWriter, r *http.Request)  {
+func JsHandler(w http.ResponseWriter, r *http.Request) {
 	http.ServeFile(w, r, "static/js/popup.js")
 }

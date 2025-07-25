@@ -36,6 +36,17 @@
           <li>{{.}}</li>
           {{end}}
         </ul>
+        <h2>creationDates{{.CreationDate}} </h2>
+
+        {{range .LocationDates}}
+          <strong>{{.Location}}:</strong>
+          <ul>
+            {{range .Dates}}
+            <li>{{.}}</li>
+            {{end}}
+          </ul>
+        {{end}}
+
         <button class="closeBtn">Close</button>
 
 
