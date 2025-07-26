@@ -1,20 +1,17 @@
 package server
 
 import (
-	"fmt"
 	"log"
 	"net/http"
 
+	"gt/fetch"
 	"gt/handlers"
 )
 
 func Server() {
-	// fitchedData, err := fetch.Fetch()
-	// if err != nil {
-	// 	log.Fatal("Error at fetching from api", err)
-	// }
-	fmt.Println("data is fitched ✅")
-
+	fetch.SolveFetchJSON()
+	return
+	//
 	mux := http.NewServeMux()
 	mux.HandleFunc("/", handlers.Home)
 	mux.HandleFunc("/artists", handlers.Artists)
