@@ -11,13 +11,10 @@ func Home(w http.ResponseWriter, r *http.Request) {
 		utils.ErrorPage(w, http.StatusBadRequest)
 		return
 	}
-	
+
 	if r.Method != http.MethodGet {
 		utils.ErrorPage(w, http.StatusBadRequest)
 		return
 	}
-	utils.ParseAndExecute(w, "templates/html/home.html")
+	utils.ParseAndExecute(w, "templates/html/home.html", nil)
 }
-
-
-

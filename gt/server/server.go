@@ -4,14 +4,11 @@ import (
 	"log"
 	"net/http"
 
-	"gt/fetch"
+	"gt/config"
 	"gt/handlers"
 )
 
 func Server() {
-	fetch.SolveFetchJSON()
-	return
-	//
 	mux := http.NewServeMux()
 	mux.HandleFunc("/", handlers.Home)
 	mux.HandleFunc("/artists", handlers.Artists)
@@ -20,8 +17,9 @@ func Server() {
 
 	s := &http.Server{
 		Handler: mux,
-		Addr:    ":3000",
+		Addr:    config.Port,
 	}
 	log.Println("Server is running at http://localhost:3000")
+
 	log.Fatal(s.ListenAndServe())
 }
