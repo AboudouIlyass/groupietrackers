@@ -5,7 +5,7 @@ import (
 	"net/http"
 )
 
-func FetchArtists(url string, result interface{}) error {
+func Fetch(url string, result interface{}) error {
 	resp, err := http.Get(url)
 	if err != nil {
 		return err

@@ -5,10 +5,15 @@ import (
 	"net/http"
 
 	"gt/config"
+	"gt/fetch"
 	"gt/handlers"
 )
 
 func Server() {
+	// fetch the data and store it in a globale variable
+	fetch.SolveFetch()
+
+	// handlers
 	mux := http.NewServeMux()
 	mux.HandleFunc("/", handlers.Home)
 	mux.HandleFunc("/artists", handlers.Artists)
@@ -23,3 +28,25 @@ func Server() {
 
 	log.Fatal(s.ListenAndServe())
 }
+
+/*
+
+<body>
+    {{range .}}
+        <img src="{{.Image}}" />
+        <p>Name: {{.Name}}</p>
+
+        {{range .Relations.Index}}
+            {{range $loc, $dates := .DatesLocations}}
+                    {{$loc}} :
+                    {{range $dates}}
+                       <p> {{.}}</p>
+                    {{end}}
+            {{end}}
+        {{end}}
+    {{end}}
+</body>
+
+
+
+*/
