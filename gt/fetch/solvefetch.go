@@ -23,7 +23,16 @@ func SolveFetch() {
 		log.Println(err)
 		return
 	}
-	// combine them
+
+	// fetch locations
+	var locLocations modals.LOCATIONS
+	err = Fetch(config.APIlocation, &locLocations)
+	if err != nil {
+		log.Println(err)
+		return
+	}
+
+	// combine them into 'config.Fulldata'
 	for _, art := range artists {
 		var rel modals.Relations
 		for _, r := range relations.Index {
@@ -31,10 +40,19 @@ func SolveFetch() {
 				rel.Index = append(rel.Index, r)
 				break
 			}
+		var loc modals.LOCATIONS
+		for _, l := range locLocations.Index{
+			if l.ID == art.ID{
+				loc.Index = append(loc.Index, l)
+				break
+			}
+	
+		}
 		}
 		config.Fulldata = append(config.Fulldata, modals.FullArtistInfo{
 			Artist:    art,
 			Relations: rel,
+			LOCATIONS: locLocations,
 		})
 	}
 }

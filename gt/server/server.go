@@ -17,7 +17,7 @@ func Server() {
 	mux := http.NewServeMux()
 	mux.HandleFunc("/", handlers.Home)
 	mux.HandleFunc("/artists", handlers.Artists)
-	mux.HandleFunc("/artistsinfo", handlers.ArtistsInfo)
+	mux.HandleFunc("/artistsinfo/", handlers.ArtistsInfo)
 	handlers.ServeAssetsAndPicsFiles(mux)
 
 	s := &http.Server{

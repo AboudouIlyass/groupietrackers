@@ -5,7 +5,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GT</title>
 </head>
+
 <body>
+
     <img src="{{.Image}}">
+    <p>{{.Name}} </p>
+    <p>{{.Members}} </p>
+    <p>{{.CreationDate}} </p>
+    <p>{{.FirstAlbum}} </p>
+
+    {{range .Relations.Index}}
+    <p>id : {{.ID}} </p>
+        {{range $location, $dates := .DatesLocations}}
+            <div>
+                {{$location}}<br>
+                {{range $dates}}
+                {{.}}
+                {{end}}
+            </div>
+        {{end}}
+    {{end}}
+
+    <p>------------------</p>
+    <p> </p>
+    <p> </p>
+    <p> </p>
 </body>
+
 </html>
